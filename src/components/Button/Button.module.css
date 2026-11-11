@@ -20,7 +20,8 @@
   outline: none;
 }
 
-.button:focus-visible {
+.button:focus-visible,
+.button[data-force-focus] {
   box-shadow: 0 0 0 3px var(--color-primary-200);
 }
 
@@ -49,7 +50,8 @@
   color: var(--color-neutral-0);
   border-color: var(--color-primary-600);
 }
-.primary:hover:not(:disabled) {
+.primary:hover:not(:disabled),
+.primary[data-force-hover]:not(:disabled) {
   background-color: var(--color-primary-700);
   border-color: var(--color-primary-700);
 }
@@ -62,7 +64,8 @@
   color: var(--color-neutral-700);
   border-color: var(--color-neutral-300);
 }
-.secondary:hover:not(:disabled) {
+.secondary:hover:not(:disabled),
+.secondary[data-force-hover]:not(:disabled) {
   background-color: var(--color-neutral-50);
   border-color: var(--color-neutral-400);
 }
@@ -75,7 +78,8 @@
   color: var(--color-neutral-700);
   border-color: transparent;
 }
-.ghost:hover:not(:disabled) {
+.ghost:hover:not(:disabled),
+.ghost[data-force-hover]:not(:disabled) {
   background-color: var(--color-neutral-100);
 }
 .ghost:active:not(:disabled) {
@@ -87,7 +91,8 @@
   color: var(--color-neutral-0);
   border-color: var(--color-danger-600);
 }
-.destructive:hover:not(:disabled) {
+.destructive:hover:not(:disabled),
+.destructive[data-force-hover]:not(:disabled) {
   background-color: var(--color-danger-700);
   border-color: var(--color-danger-700);
 }

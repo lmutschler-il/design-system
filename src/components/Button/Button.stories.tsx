@@ -1,13 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import { Button, type ButtonVariant } from './Button';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Buttons trigger actions or navigation. Four variants cover the full range of visual weight; all support the same five states.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',
@@ -26,79 +32,69 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
-  args: {
-    variant: 'primary',
-    children: 'Button',
-  },
+const VARIANTS: ButtonVariant[] = ['primary', 'secondary', 'ghost', 'destructive'];
+
+const ROWS: {
+  label: string;
+  props: Record<string, unknown>;
+}[] = [
+  { label: 'Default', props: {} },
+  { label: 'Hover', props: { 'data-force-hover': '' } },
+  { label: 'Focus', props: { 'data-force-focus': '' } },
+  { label: 'Disabled', props: { disabled: true } },
+  { label: 'Loading', props: { loading: true } },
+];
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: 'var(--font-family-base)',
+  fontSize: '0.75rem',
+  fontWeight: 500,
+  color: 'var(--color-neutral-500)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.06em',
+  whiteSpace: 'nowrap',
 };
 
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    children: 'Button',
-  },
+const headerStyle: React.CSSProperties = {
+  ...labelStyle,
+  textAlign: 'center',
+  paddingBottom: '0.75rem',
 };
 
-export const Ghost: Story = {
-  args: {
-    variant: 'ghost',
-    children: 'Button',
-  },
-};
-
-export const Destructive: Story = {
-  args: {
-    variant: 'destructive',
-    children: 'Button',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'sm',
-    children: 'Small button',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
-    children: 'Large button',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-    children: 'Disabled',
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    loading: true,
-    children: 'Save changes',
-  },
-};
-
-export const AllVariants: Story = {
+export const Overview: Story = {
+  tags: ['!dev'],
   render: () => (
-    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="destructive">Destructive</Button>
-    </div>
-  ),
-};
-
-export const AllSizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
-    </div>
+    <table
+      style={{
+        borderCollapse: 'separate',
+        borderSpacing: '0 0.5rem',
+        width: '100%',
+      }}
+    >
+      <thead>
+        <tr>
+          <th style={{ width: '6rem' }} />
+          {VARIANTS.map((v) => (
+            <th key={v} style={headerStyle}>
+              {v.charAt(0).toUpperCase() + v.slice(1)}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {ROWS.map(({ label, props }) => (
+          <tr key={label}>
+            <td style={labelStyle}>{label}</td>
+            {VARIANTS.map((v) => (
+              <td key={v} style={{ textAlign: 'center', padding: '0.25rem 0.5rem' }}>
+                <Button variant={v} {...(props as React.ComponentPropsWithoutRef<'button'>)}>
+                  Button
+                </Button>
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   ),
 };
