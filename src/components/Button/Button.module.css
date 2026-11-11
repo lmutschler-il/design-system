@@ -1,0 +1,108 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-md);
+  border: var(--border-width) solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity var(--transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-primary-200);
+}
+
+/* Sizes */
+.sm {
+  font-size: var(--font-size-xs);
+  padding: var(--space-2) var(--space-3);
+  height: 2rem;
+}
+
+.md {
+  font-size: var(--font-size-sm);
+  padding: var(--space-2) var(--space-4);
+  height: 2.5rem;
+}
+
+.lg {
+  font-size: var(--font-size-md);
+  padding: var(--space-3) var(--space-5);
+  height: 3rem;
+}
+
+/* Variants */
+.primary {
+  background-color: var(--color-primary-600);
+  color: var(--color-neutral-0);
+  border-color: var(--color-primary-600);
+}
+.primary:hover:not(:disabled) {
+  background-color: var(--color-primary-700);
+  border-color: var(--color-primary-700);
+}
+.primary:active:not(:disabled) {
+  background-color: var(--color-primary-800);
+}
+
+.secondary {
+  background-color: var(--color-neutral-0);
+  color: var(--color-neutral-700);
+  border-color: var(--color-neutral-300);
+}
+.secondary:hover:not(:disabled) {
+  background-color: var(--color-neutral-50);
+  border-color: var(--color-neutral-400);
+}
+.secondary:active:not(:disabled) {
+  background-color: var(--color-neutral-100);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--color-neutral-700);
+  border-color: transparent;
+}
+.ghost:hover:not(:disabled) {
+  background-color: var(--color-neutral-100);
+}
+.ghost:active:not(:disabled) {
+  background-color: var(--color-neutral-200);
+}
+
+.destructive {
+  background-color: var(--color-danger-600);
+  color: var(--color-neutral-0);
+  border-color: var(--color-danger-600);
+}
+.destructive:hover:not(:disabled) {
+  background-color: var(--color-danger-700);
+  border-color: var(--color-danger-700);
+}
+.destructive:active:not(:disabled) {
+  background-color: var(--color-danger-700);
+}
+
+/* Disabled */
+.button:disabled,
+.button[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Full width */
+.fullWidth {
+  width: 100%;
+}
